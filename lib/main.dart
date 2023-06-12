@@ -55,6 +55,8 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     _cards = PlayingCard.getShuffledSingleDeck(unshuffled: true);
 
+    // TODO: Update timer is set to 60 updates per second (16667 microseconds)...
+    // This seems to work pretty smoothly as a Flutter gaming animation update loop?
     Timer.periodic(
       const Duration(microseconds: 16667),
       (timer) => updateAnim(),
