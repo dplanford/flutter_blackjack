@@ -93,6 +93,8 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           ),
+          Text('Card: $_cardIndex'),
+          const SizedBox(height: 16),
         ],
       ),
     );
@@ -113,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
       if (_rotationX > -piDiv2 && _rotationX < piDiv2) {
         if (_backShowing) {
           _backShowing = false;
-          if (_cardIndex > _cards.length) {
+          if (_cardIndex >= _cards.length - 1) {
             _cardIndex = 0;
           } else {
             _cardIndex += 1;
