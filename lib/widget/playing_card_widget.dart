@@ -1,3 +1,4 @@
+import 'package:blackjack_package/widget/spinnable_card.dart';
 import 'package:flutter/material.dart';
 
 import 'package:blackjack_package/helper/playing_card_helper.dart';
@@ -16,6 +17,12 @@ class PlayingCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return SpinnableCard(
+      imageFileName: PlayingCard.fileName(card),
+      rotationX: rotationX,
+      rotationZ: rotationZ,
+    );
+    /*
     return Transform(
       transform: Matrix4.identity()
         ..setEntry(3, 2, 0.001)
@@ -24,5 +31,6 @@ class PlayingCardWidget extends StatelessWidget {
       alignment: Alignment.center,
       child: Image.asset(PlayingCard.fileName(card)),
     );
+    */
   }
 }
