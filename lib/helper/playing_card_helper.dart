@@ -1,4 +1,4 @@
-import 'package:blackjack_package/helper/random_date_helper.dart';
+import 'package:blackjack_package/helper/random_helper.dart';
 
 enum PlayingCardSuit {
   hearts,
@@ -34,9 +34,6 @@ class PlayingCard {
   });
 
   static const String cardBack = 'assets/images/cards/back.png';
-
-  static List<PlayingCard> cardList = [];
-  static int curCard = 0;
 
   static String fileName(PlayingCard? card) {
     String fileName = '';
@@ -157,7 +154,32 @@ class PlayingCard {
     List<PlayingCard> shuffledDeck = [];
 
     while (coreCards.isNotEmpty) {
-      int randCard = RandomDateHelper.returnRandomInt(max: coreCards.length);
+      int randCard = RandomHelper.returnRandomInt(max: coreCards.length);
+      PlayingCard card = coreCards[randCard];
+      shuffledDeck.add(card);
+      coreCards.removeAt(randCard);
+    }
+
+    return shuffledDeck;
+  }
+
+  static List<PlayingCard> getShuffledMultiDeck(int numDecks) {
+    List<PlayingCard> coreCards = [];
+
+    // And wrap it in a multi-deck initial list including the input number of decks....
+    for (int i = 0; i < numDecks - 1; i++) {
+      // First build a complete list of the 52 cards (4 suits, 13 cards each).
+      for (PlayingCardSuit suit in PlayingCardSuit.values) {
+        for (PlayingCardValue cardValue in PlayingCardValue.values) {
+          coreCards.add(PlayingCard(suit: suit, value: cardValue));
+        }
+      }
+    }
+    // Then randomly shuffle the deck...
+    List<PlayingCard> shuffledDeck = [];
+
+    while (coreCards.isNotEmpty) {
+      int randCard = RandomHelper.returnRandomInt(max: coreCards.length);
       PlayingCard card = coreCards[randCard];
       shuffledDeck.add(card);
       coreCards.removeAt(randCard);

@@ -24,3 +24,4 @@ pubspec.lock
 .idea/runConfigurations/main_dart.xml
 .idea/workspace.xml
 .metadata
+.dart_tool/extension_discovery/README.md

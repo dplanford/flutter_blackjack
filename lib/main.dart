@@ -1,13 +1,6 @@
-import 'dart:async';
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
-import 'package:blackjack_package/helper/playing_card_helper.dart';
-import 'package:blackjack_package/widget/playing_card_widget.dart';
-
-const double piDiv2 = pi / 2.0;
-const double pi2 = 2 * pi;
+import 'package:blackjack_package/widget/playing_card_deck_spinny_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -44,86 +37,137 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _cardIndex = 0;
-  List<PlayingCard> _cards = [];
-  double _rotationX = piDiv2;
-  double _rotationZ = 0;
-  bool _backShowing = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _cards = PlayingCard.getShuffledSingleDeck(unshuffled: true);
-
-    // TODO: Update timer is set to 60 updates per second (16667 microseconds)...
-    // This seems to work pretty smoothly as a Flutter gaming animation update loop?
-    Timer.periodic(
-      const Duration(microseconds: 16667),
-      (timer) => updateAnim(),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Blackjack Test....'),
+        title: const Text('Blackjack Card Spinny Test!'),
       ),
-      body: Column(
+      body: const Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          TextButton(
-            child: const Text('New Shuffle!'),
-            onPressed: () {
-              setState(() {
-                _cards = PlayingCard.getShuffledSingleDeck();
-                _cardIndex = 0;
-                _rotationX = piDiv2;
-                _rotationZ = 0;
-              });
-            },
-          ),
-          const SizedBox(height: 20),
+          SizedBox(height: 4),
           Expanded(
-            child: Center(
-              child: PlayingCardWidget(
-                card: _backShowing ? null : _cards[_cardIndex],
-                rotationX: _rotationX,
-                rotationZ: _rotationZ,
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(width: 4),
+                PlayingCardDeckSpinnyWidget(),
+                SizedBox(width: 4),
+                PlayingCardDeckSpinnyWidget(),
+                SizedBox(width: 4),
+                PlayingCardDeckSpinnyWidget(),
+                SizedBox(width: 4),
+                PlayingCardDeckSpinnyWidget(),
+                SizedBox(width: 4),
+              ],
             ),
           ),
-          Text('Card: $_cardIndex'),
-          const SizedBox(height: 16),
+          SizedBox(height: 4),
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(width: 4),
+                PlayingCardDeckSpinnyWidget(),
+                SizedBox(width: 4),
+                PlayingCardDeckSpinnyWidget(),
+                SizedBox(width: 4),
+                PlayingCardDeckSpinnyWidget(),
+                SizedBox(width: 4),
+                PlayingCardDeckSpinnyWidget(),
+                SizedBox(width: 4),
+              ],
+            ),
+          ),
+          SizedBox(height: 4),
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(width: 4),
+                PlayingCardDeckSpinnyWidget(),
+                SizedBox(width: 4),
+                PlayingCardDeckSpinnyWidget(),
+                SizedBox(width: 4),
+                PlayingCardDeckSpinnyWidget(),
+                SizedBox(width: 4),
+                PlayingCardDeckSpinnyWidget(),
+                SizedBox(width: 4),
+              ],
+            ),
+          ),
+          SizedBox(height: 4),
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(width: 4),
+                PlayingCardDeckSpinnyWidget(),
+                SizedBox(width: 4),
+                PlayingCardDeckSpinnyWidget(),
+                SizedBox(width: 4),
+                PlayingCardDeckSpinnyWidget(),
+                SizedBox(width: 4),
+                PlayingCardDeckSpinnyWidget(),
+                SizedBox(width: 4),
+              ],
+            ),
+          ),
+          SizedBox(height: 4),
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(width: 4),
+                PlayingCardDeckSpinnyWidget(),
+                SizedBox(width: 4),
+                PlayingCardDeckSpinnyWidget(),
+                SizedBox(width: 4),
+                PlayingCardDeckSpinnyWidget(),
+                SizedBox(width: 4),
+                PlayingCardDeckSpinnyWidget(),
+                SizedBox(width: 4),
+              ],
+            ),
+          ),
+          SizedBox(height: 4),
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(width: 4),
+                PlayingCardDeckSpinnyWidget(),
+                SizedBox(width: 4),
+                PlayingCardDeckSpinnyWidget(),
+                SizedBox(width: 4),
+                PlayingCardDeckSpinnyWidget(),
+                SizedBox(width: 4),
+                PlayingCardDeckSpinnyWidget(),
+                SizedBox(width: 4),
+              ],
+            ),
+          ),
+          SizedBox(height: 4),
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(width: 4),
+                PlayingCardDeckSpinnyWidget(),
+                SizedBox(width: 4),
+                PlayingCardDeckSpinnyWidget(),
+                SizedBox(width: 4),
+                PlayingCardDeckSpinnyWidget(),
+                SizedBox(width: 4),
+                PlayingCardDeckSpinnyWidget(),
+                SizedBox(width: 4),
+              ],
+            ),
+          ),
+          SizedBox(height: 4),
         ],
       ),
     );
-  }
-
-  void updateAnim() {
-    setState(() {
-      _rotationX -= 0.02;
-      if (_rotationX < -pi) {
-        _rotationX += pi2;
-      }
-
-      _rotationZ += 0.005;
-      if (_rotationZ > pi) {
-        _rotationZ += pi2;
-      }
-
-      if (_rotationX > -piDiv2 && _rotationX < piDiv2) {
-        if (_backShowing) {
-          _backShowing = false;
-          if (_cardIndex >= _cards.length - 1) {
-            _cardIndex = 0;
-          } else {
-            _cardIndex += 1;
-          }
-        }
-      } else if (!_backShowing) {
-        _backShowing = true;
-      }
-    });
   }
 }
